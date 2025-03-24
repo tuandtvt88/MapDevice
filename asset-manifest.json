@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/MapDevice/static/css/main.14c67688.css",
+    "main.js": "/MapDevice/static/js/main.dfb85ff6.js",
+    "static/media/T3.png": "/MapDevice/static/media/T3.ba8c130ae30054790481.png",
+    "static/media/T1.png": "/MapDevice/static/media/T1.bb463e3b727227807c6b.png",
+    "static/media/T2.png": "/MapDevice/static/media/T2.66273d6633461ed1a642.png",
+    "index.html": "/MapDevice/index.html",
+    "main.14c67688.css.map": "/MapDevice/static/css/main.14c67688.css.map",
+    "main.dfb85ff6.js.map": "/MapDevice/static/js/main.dfb85ff6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14c67688.css",
+    "static/js/main.dfb85ff6.js"
+  ]
+}
