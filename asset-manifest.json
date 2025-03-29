@@ -1,19 +1,20 @@
 {
   "files": {
     "main.css": "/MapDevice/static/css/main.bbe297b1.css",
-    "main.js": "/MapDevice/static/js/main.f626cdc3.js",
-    "static/media/T1Gamma.png": "/MapDevice/static/media/T1Gamma.b0e8f0d25f76d9de0ab9.png",
-    "static/media/T5.png": "/MapDevice/static/media/T5.e6f2526bab7c7c43ff5a.png",
-    "static/media/T4.png": "/MapDevice/static/media/T4.2db52a9b063597e226ee.png",
-    "static/media/T3.png": "/MapDevice/static/media/T3.ba8c130ae30054790481.png",
-    "static/media/T1.png": "/MapDevice/static/media/T1.6f78f1113c3b52a51993.png",
-    "static/media/T2.png": "/MapDevice/static/media/T2.66273d6633461ed1a642.png",
+    "main.js": "/MapDevice/static/js/main.52d5009a.js",
+    "static/media/T2Gamma.png": "/MapDevice/static/media/T2Gamma.b489355fca0ff83a8d0a.png",
+    "static/media/T1Gamma.png": "/MapDevice/static/media/T1Gamma.f652c1292a9c529d6b96.png",
+    "static/media/T5.png": "/MapDevice/static/media/T5.82ba26d397e6a4cf6175.png",
+    "static/media/T4.png": "/MapDevice/static/media/T4.36214d46acdb8fdec315.png",
+    "static/media/T3.png": "/MapDevice/static/media/T3.3ef3fc025076e7d1c076.png",
+    "static/media/T1.png": "/MapDevice/static/media/T1.2be2064cafde9f81afd6.png",
+    "static/media/T2.png": "/MapDevice/static/media/T2.6ee1b6f06924db85908a.png",
     "index.html": "/MapDevice/index.html",
     "main.bbe297b1.css.map": "/MapDevice/static/css/main.bbe297b1.css.map",
-    "main.f626cdc3.js.map": "/MapDevice/static/js/main.f626cdc3.js.map"
+    "main.52d5009a.js.map": "/MapDevice/static/js/main.52d5009a.js.map"
   },
   "entrypoints": [
     "static/css/main.bbe297b1.css",
-    "static/js/main.f626cdc3.js"
+    "static/js/main.52d5009a.js"
   ]
 }
