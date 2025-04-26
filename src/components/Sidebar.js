@@ -1,6 +1,48 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Sidebar.css";
+
+// Import all WiFi locations from different files
+import { wifiLocations as wifiTang1Beta } from "./Tang1Beta";
+import { wifiLocations as wifiTang2Beta } from "./Tang2Beta";
+import { wifiLocations as wifiTang3Beta } from "./Tang3Beta";
+import { wifiLocations as wifiTang4Beta } from "./Tang4Beta";
+import { wifiLocations as wifiTang5Beta } from "./Tang5Beta";
+import { wifiLocations as wifiTang1Gamma } from "./Tang1Gamma";
+import { wifiLocations as wifiTang2Gamma } from "./Tang2Gamma";
+import { wifiLocations as wifiTang3Gamma } from "./Tang3Gamma";
+import { wifiLocations as wifiTang4Gamma } from "./Tang4Gamma";
+import { wifiLocations as wifiTang5Gamma } from "./Tang5Gamma";
+import { wifiLocations as wifiTang1NCVso5 } from "./Tang1NCVso5";
+import { wifiLocations as wifiTang2NCVso5 } from "./Tang2NCVso5";
+import { wifiLocations as wifiTang1NCVso6 } from "./Tang1NCVso6";
+import { wifiLocations as wifiTang2NCVso6 } from "./Tang2NCVso6";
+import { wifiLocations as wifiTang1NCVso7 } from "./Tang1NCVso7";
+import { wifiLocations as wifiTang2NCVso7 } from "./Tang2NCVso7";
+import { wifiLocations as wifiKTXDomA } from "./KTXDomA";
+import { wifiLocations as wifiKTXDomB } from "./KTXDomB";
+
+// Combine all WiFi locations into one array with their corresponding paths
+const allWifiLocations = [
+  ...wifiTang1Beta.map(wifi => ({ ...wifi, path: "/tang1beta" })),
+  ...wifiTang2Beta.map(wifi => ({ ...wifi, path: "/tang2beta" })),
+  ...wifiTang3Beta.map(wifi => ({ ...wifi, path: "/tang3beta" })),
+  ...wifiTang4Beta.map(wifi => ({ ...wifi, path: "/tang4beta" })),
+  ...wifiTang5Beta.map(wifi => ({ ...wifi, path: "/tang5beta" })),
+  ...wifiTang1Gamma.map(wifi => ({ ...wifi, path: "/tang1gamma" })),
+  ...wifiTang2Gamma.map(wifi => ({ ...wifi, path: "/tang2gamma" })),
+  ...wifiTang3Gamma.map(wifi => ({ ...wifi, path: "/tang3gamma" })),
+  ...wifiTang4Gamma.map(wifi => ({ ...wifi, path: "/tang4gamma" })),
+  ...wifiTang5Gamma.map(wifi => ({ ...wifi, path: "/tang5gamma" })),
+  ...wifiTang1NCVso5.map(wifi => ({ ...wifi, path: "/tang1ncvso5" })),
+  ...wifiTang2NCVso5.map(wifi => ({ ...wifi, path: "/tang2ncvso5" })),
+  ...wifiTang1NCVso6.map(wifi => ({ ...wifi, path: "/tang1ncvso6" })),
+  ...wifiTang2NCVso6.map(wifi => ({ ...wifi, path: "/tang2ncvso6" })),
+  ...wifiTang1NCVso7.map(wifi => ({ ...wifi, path: "/tang1ncvso7" })),
+  ...wifiTang2NCVso7.map(wifi => ({ ...wifi, path: "/tang2ncvso7" })),
+  ...wifiKTXDomA.map(wifi => ({ ...wifi, path: "/ktxdomA" })),
+  ...wifiKTXDomB.map(wifi => ({ ...wifi, path: "/ktxdomB" })),
+];
 
 export function Sidebar() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -11,6 +53,49 @@ export function Sidebar() {
     const [isNha6Open, setIsNha6Open] = useState(false);
     const [isNha7Open, setIsNha7Open] = useState(false);
     const [isKTXOpen, setIsKTXOpen] = useState(false);
+    
+    // Search functionality states
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [selectedWifi, setSelectedWifi] = useState(null);
+    const [isSearchFocused, setIsSearchFocused] = useState(false);
+    const [noResultsFound, setNoResultsFound] = useState(false);
+    const navigate = useNavigate();
+
+    // Handle search input changes
+    useEffect(() => {
+        if (searchTerm.trim() === "") {
+            setSearchResults([]);
+            setNoResultsFound(false);
+            return;
+        }
+
+        const results = allWifiLocations.filter(wifi =>
+            wifi.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ).slice(0, 5); // Limit to 5 results
+
+        setSearchResults(results);
+        setNoResultsFound(results.length === 0);
+    }, [searchTerm]);
+
+    // Handle WiFi selection
+    const handleWifiSelect = (wifi) => {
+        setSelectedWifi(wifi);
+        setSearchTerm(wifi.name);
+        setSearchResults([]);
+        setNoResultsFound(false);
+    };
+
+    // Navigate to location and highlight the WiFi
+    const handleGoToLocation = (wifi) => {
+        setIsSidebarOpen(false);
+        navigate(wifi.path, { 
+            state: { 
+                highlightedWifi: wifi.name,
+                scrollToWifi: true 
+            } 
+        });
+    };
 
     return (
         <>
@@ -21,84 +106,231 @@ export function Sidebar() {
             <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
                 <button className="close-btn" onClick={() => setIsSidebarOpen(false)}>✖</button>
 
+                {/* Search Component */}
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Tìm kiếm tên WiFi..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onFocus={() => setIsSearchFocused(true)}
+                        onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                        className="search-input"
+                    />
+                    {isSearchFocused && (
+                        <div className="search-results-container">
+                            {searchResults.length > 0 ? (
+                                <div className="search-results">
+                                    {searchResults.map((wifi, index) => (
+                                        <div
+                                            key={index}
+                                            className="search-result-item"
+                                            onClick={() => handleWifiSelect(wifi)}
+                                        >
+                                            {wifi.name}
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : noResultsFound && searchTerm.trim() !== "" ? (
+                                <div className="no-results-message">
+                                    Không tìm thấy WiFi "{searchTerm}" trên bản đồ
+                                </div>
+                            ) : null}
+                        </div>
+                    )}
+                </div>
+
+                {/* Highlight selected WiFi if it's in this section */}
+                {selectedWifi && (
+                    <div className="selected-wifi-info">
+                        <div className="selected-wifi-name">
+                            {selectedWifi.name}
+                        </div>
+                        <button
+                            className="go-to-wifi-button"
+                            onClick={() => handleGoToLocation(selectedWifi)}
+                        >
+                            Đến vị trí
+                        </button>
+                    </div>
+                )}
+
                 {/* Beta */}
-                <button className="toggle-button" onClick={() => setIsBetaOpen(!isBetaOpen)}>
+                <button 
+                    className={`toggle-button ${selectedWifi?.path.includes("beta") ? "highlighted" : ""}`}
+                    onClick={() => setIsBetaOpen(!isBetaOpen)}
+                >
                     Vị trí AP nhà Beta {isBetaOpen ? "▲" : "▼"}
                 </button>
                 {isBetaOpen && (
                     <nav className="sidebar-menu">
-                        <SidebarButton to="/tang1beta" text="Tầng 1 Beta" />
-                        <SidebarButton to="/tang2beta" text="Tầng 2 Beta" />
-                        <SidebarButton to="/tang3beta" text="Tầng 3 Beta" />
-                        <SidebarButton to="/tang4beta" text="Tầng 4 Beta" />
-                        <SidebarButton to="/tang5beta" text="Tầng 5 Beta" />
+                        <SidebarButton 
+                            to="/tang1beta" 
+                            text="Tầng 1 Beta" 
+                            isHighlighted={selectedWifi?.path === "/tang1beta"}
+                        />
+                        <SidebarButton 
+                            to="/tang2beta" 
+                            text="Tầng 2 Beta" 
+                            isHighlighted={selectedWifi?.path === "/tang2beta"}
+                        />
+                        <SidebarButton 
+                            to="/tang3beta" 
+                            text="Tầng 3 Beta" 
+                            isHighlighted={selectedWifi?.path === "/tang3beta"}
+                        />
+                        <SidebarButton 
+                            to="/tang4beta" 
+                            text="Tầng 4 Beta" 
+                            isHighlighted={selectedWifi?.path === "/tang4beta"}
+                        />
+                        <SidebarButton 
+                            to="/tang5beta" 
+                            text="Tầng 5 Beta" 
+                            isHighlighted={selectedWifi?.path === "/tang5beta"}
+                        />
                     </nav>
                 )}
 
                 {/* Gamma */}
-                <button className="toggle-button" onClick={() => setIsGammaOpen(!isGammaOpen)}>
+                <button 
+                    className={`toggle-button ${selectedWifi?.path.includes("gamma") ? "highlighted" : ""}`}
+                    onClick={() => setIsGammaOpen(!isGammaOpen)}
+                >
                     Vị trí AP nhà Gamma {isGammaOpen ? "▲" : "▼"}
                 </button>
                 {isGammaOpen && (
                     <nav className="sidebar-menu">
-                        <SidebarButton to="/tang1gamma" text="Tầng 1 Gamma" />
-                        <SidebarButton to="/tang2gamma" text="Tầng 2 Gamma" />
-                        <SidebarButton to="/tang3gamma" text="Tầng 3 Gamma" />
-                        <SidebarButton to="/tang4gamma" text="Tầng 4 Gamma" />
-                        <SidebarButton to="/tang5gamma" text="Tầng 5 Gamma" />
+                        <SidebarButton 
+                            to="/tang1gamma" 
+                            text="Tầng 1 Gamma" 
+                            isHighlighted={selectedWifi?.path === "/tang1gamma"}
+                        />
+                        <SidebarButton 
+                            to="/tang2gamma" 
+                            text="Tầng 2 Gamma" 
+                            isHighlighted={selectedWifi?.path === "/tang2gamma"}
+                        />
+                        <SidebarButton 
+                            to="/tang3gamma" 
+                            text="Tầng 3 Gamma" 
+                            isHighlighted={selectedWifi?.path === "/tang3gamma"}
+                        />
+                        <SidebarButton 
+                            to="/tang4gamma" 
+                            text="Tầng 4 Gamma" 
+                            isHighlighted={selectedWifi?.path === "/tang4gamma"}
+                        />
+                        <SidebarButton 
+                            to="/tang5gamma" 
+                            text="Tầng 5 Gamma" 
+                            isHighlighted={selectedWifi?.path === "/tang5gamma"}
+                        />
                     </nav>
                 )}
 
                 {/* Nhà công vụ */}
-                <button className="toggle-button" onClick={() => setIsCongVuOpen(!isCongVuOpen)}>
+                <button 
+                    className={`toggle-button ${selectedWifi?.path.includes("ncv") ? "highlighted" : ""}`}
+                    onClick={() => setIsCongVuOpen(!isCongVuOpen)}
+                >
                     Vị trí AP nhà Công Vụ {isCongVuOpen ? "▲" : "▼"}
                 </button>
                 {isCongVuOpen && (
                     <div className="sidebar-menu nha-cong-vu">
                         {/* Nhà 5 */}
-                        <button className="nha-cong-vu-title" onClick={() => setIsNha5Open(!isNha5Open)}>
+                        <button 
+                            className={`nha-cong-vu-title ${selectedWifi?.path.includes("so5") ? "highlighted" : ""}`}
+                            onClick={() => setIsNha5Open(!isNha5Open)}
+                        >
                             Nhà công vụ số 5 {isNha5Open ? "▲" : "▼"}
                         </button>
                         {isNha5Open && (
                             <>
-                                <SidebarButton to="/tang1ncvso5" text="Tầng 1" className="nha-cong-vu-tang" />
-                                <SidebarButton to="/tang2ncvso5" text="Tầng 2" className="nha-cong-vu-tang" />
+                                <SidebarButton 
+                                    to="/tang1ncvso5" 
+                                    text="Tầng 1" 
+                                    className="nha-cong-vu-tang"
+                                    isHighlighted={selectedWifi?.path === "/tang1ncvso5"}
+                                />
+                                <SidebarButton 
+                                    to="/tang2ncvso5" 
+                                    text="Tầng 2" 
+                                    className="nha-cong-vu-tang"
+                                    isHighlighted={selectedWifi?.path === "/tang2ncvso5"}
+                                />
                             </>
                         )}
 
                         {/* Nhà 6 */}
-                        <button className="nha-cong-vu-title" onClick={() => setIsNha6Open(!isNha6Open)}>
+                        <button 
+                            className={`nha-cong-vu-title ${selectedWifi?.path.includes("so6") ? "highlighted" : ""}`}
+                            onClick={() => setIsNha6Open(!isNha6Open)}
+                        >
                             Nhà công vụ số 6 {isNha6Open ? "▲" : "▼"}
                         </button>
                         {isNha6Open && (
                             <>
-                                <SidebarButton to="/tang1ncvso6" text="Tầng 1" className="nha-cong-vu-tang" />
-                                <SidebarButton to="/tang2ncvso6" text="Tầng 2" className="nha-cong-vu-tang" />
+                                <SidebarButton 
+                                    to="/tang1ncvso6" 
+                                    text="Tầng 1" 
+                                    className="nha-cong-vu-tang"
+                                    isHighlighted={selectedWifi?.path === "/tang1ncvso6"}
+                                />
+                                <SidebarButton 
+                                    to="/tang2ncvso6" 
+                                    text="Tầng 2" 
+                                    className="nha-cong-vu-tang"
+                                    isHighlighted={selectedWifi?.path === "/tang2ncvso6"}
+                                />
                             </>
                         )}
 
                         {/* Nhà 7 */}
-                        <button className="nha-cong-vu-title" onClick={() => setIsNha7Open(!isNha7Open)}>
+                        <button 
+                            className={`nha-cong-vu-title ${selectedWifi?.path.includes("so7") ? "highlighted" : ""}`}
+                            onClick={() => setIsNha7Open(!isNha7Open)}
+                        >
                             Nhà công vụ số 7 {isNha7Open ? "▲" : "▼"}
                         </button>
                         {isNha7Open && (
                             <>
-                                <SidebarButton to="/tang1ncvso7" text="Tầng 1" className="nha-cong-vu-tang" />
-                                <SidebarButton to="/tang2ncvso7" text="Tầng 2" className="nha-cong-vu-tang" />
+                                <SidebarButton 
+                                    to="/tang1ncvso7" 
+                                    text="Tầng 1" 
+                                    className="nha-cong-vu-tang"
+                                    isHighlighted={selectedWifi?.path === "/tang1ncvso7"}
+                                />
+                                <SidebarButton 
+                                    to="/tang2ncvso7" 
+                                    text="Tầng 2" 
+                                    className="nha-cong-vu-tang"
+                                    isHighlighted={selectedWifi?.path === "/tang2ncvso7"}
+                                />
                             </>
                         )}
                     </div>
                 )}
 
-{/* KTX */}
-<button className="toggle-button" onClick={() => setIsKTXOpen(!isKTXOpen)}>
+                {/* KTX */}
+                <button 
+                    className={`toggle-button ${selectedWifi?.path.includes("ktx") ? "highlighted" : ""}`}
+                    onClick={() => setIsKTXOpen(!isKTXOpen)}
+                >
                     Vị trí AP Kí Túc Xá {isKTXOpen ? "▲" : "▼"}
                 </button>
                 {isKTXOpen && (
                     <nav className="sidebar-menu">
-                        <SidebarButton to="/ktxdomB" text="KTX Dom B" />
-                        <SidebarButton to="/ktxdomA" text="KTX Dom A" />
-
+                        <SidebarButton 
+                            to="/ktxdomB" 
+                            text="KTX Dom B" 
+                            isHighlighted={selectedWifi?.path === "/ktxdomB"}
+                        />
+                        <SidebarButton 
+                            to="/ktxdomA" 
+                            text="KTX Dom A" 
+                            isHighlighted={selectedWifi?.path === "/ktxdomA"}
+                        />
                     </nav>
                 )}
 
@@ -111,9 +343,13 @@ export function Sidebar() {
     );
 }
 
-function SidebarButton({ to, text }) {
+function SidebarButton({ to, text, isHighlighted = false, ...props }) {
     return (
-        <Link to={to} className="sidebar-button">
+        <Link 
+            to={to} 
+            className={`sidebar-button ${isHighlighted ? "highlighted" : ""}`}
+            {...props}
+        >
             {text}
         </Link>
     );
