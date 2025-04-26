@@ -18,6 +18,7 @@ import { wifiLocations as wifiTang1NCVso7 } from "./Tang1NCVso7";
 import { wifiLocations as wifiTang2NCVso7 } from "./Tang2NCVso7";
 import { wifiLocations as wifiKTXDomA } from "./KTXDomA";
 import { wifiLocations as wifiKTXDomB } from "./KTXDomB";
+import { wifiLocations as wifiSanVovinam } from "./SanVovinam";
 
 // Hàm phân loại AP với ARUBA
 const classifyAP = (wifiList) => {
@@ -50,6 +51,9 @@ const classifyAP = (wifiList) => {
                 break;
             case name.includes('LITE'):
                 result.ACLite += 1;
+                break;
+            default:
+                // No action needed for other cases
                 break;
         }
     });
@@ -90,6 +94,9 @@ const data = {
     ktx: {
         domA: classifyAP(wifiKTXDomA),
         domB: classifyAP(wifiKTXDomB)
+    },
+    vovinam: {
+        "Sân Vovinam": classifyAP(wifiSanVovinam)
     }
 };
 
@@ -168,52 +175,6 @@ const renderTable = (data, title) => {
     );
 };
 
-const renderNCVTable = (house) => {
-    const houseData = data.ncv[house];
-    const total = calculateTotal(houseData);
-    
-    return (
-        <div key={house} className="ncv-house">
-            <h3 className="building-title">NHÀ CÔNG VỤ SỐ {house}</h3>
-            <table className="wifi-table">
-                <thead>
-                    <tr>
-                        <th>Tầng</th>
-                        <th>U6 Pro</th>
-                        <th>U6 LR</th>
-                        <th>AC-Pro</th>
-                        <th>AC-Lite</th>
-                        <th>ARUBA</th>
-                        <th>Tổng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.entries(houseData).map(([floor, ap]) => (
-                        <tr key={floor}>
-                            <td>{floor}</td>
-                            <td>{ap.U6Pro}</td>
-                            <td>{ap.U6LR}</td>
-                            <td>{ap.ACPro}</td>
-                            <td>{ap.ACLite}</td>
-                            <td>{ap.ARUBA}</td>
-                            <td>{ap.U6Pro + ap.U6LR + ap.ACPro + ap.ACLite + ap.ARUBA}</td>
-                        </tr>
-                    ))}
-                    <tr className="total-row">
-                        <td><strong>Tổng</strong></td>
-                        <td><strong>{total.U6Pro}</strong></td>
-                        <td><strong>{total.U6LR}</strong></td>
-                        <td><strong>{total.ACPro}</strong></td>
-                        <td><strong>{total.ACLite}</strong></td>
-                        <td><strong>{total.ARUBA}</strong></td>
-                        <td><strong>{Object.values(total).reduce((a, b) => a + b, 0)}</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    );
-};
-
 export function ThongKeWiFi() {
     const grandTotal = getAllAPCounts(data);
 
@@ -242,6 +203,9 @@ export function ThongKeWiFi() {
                     {renderTable({ "Dom A": data.ktx.domA }, "KÝ TÚC XÁ DOM A")}
                     {renderTable({ "Dom B": data.ktx.domB }, "KÝ TÚC XÁ DOM B")}
                 </div>
+
+                {/* Sân Vovinam */}
+                {renderTable(data.vovinam, "SÂN VOVINAM")}
             </div>
         </div>
     );

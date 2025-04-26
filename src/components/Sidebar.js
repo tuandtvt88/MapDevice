@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Sidebar.css";
+import { X } from "lucide-react"; // Import X icon from lucide-react
 
 // Import all WiFi locations from different files
 import { wifiLocations as wifiTang1Beta } from "./Tang1Beta";
@@ -21,6 +22,7 @@ import { wifiLocations as wifiTang1NCVso7 } from "./Tang1NCVso7";
 import { wifiLocations as wifiTang2NCVso7 } from "./Tang2NCVso7";
 import { wifiLocations as wifiKTXDomA } from "./KTXDomA";
 import { wifiLocations as wifiKTXDomB } from "./KTXDomB";
+import { wifiLocations as wifiSanVovinam } from "./SanVovinam";
 
 // Combine all WiFi locations into one array with their corresponding paths
 const allWifiLocations = [
@@ -42,6 +44,7 @@ const allWifiLocations = [
   ...wifiTang2NCVso7.map(wifi => ({ ...wifi, path: "/tang2ncvso7" })),
   ...wifiKTXDomA.map(wifi => ({ ...wifi, path: "/ktxdomA" })),
   ...wifiKTXDomB.map(wifi => ({ ...wifi, path: "/ktxdomB" })),
+  ...wifiSanVovinam.map(wifi => ({ ...wifi, path: "/sanvovinam" })),
 ];
 
 export function Sidebar() {
@@ -53,6 +56,7 @@ export function Sidebar() {
     const [isNha6Open, setIsNha6Open] = useState(false);
     const [isNha7Open, setIsNha7Open] = useState(false);
     const [isKTXOpen, setIsKTXOpen] = useState(false);
+    const [isVovinamOpen, setIsVovinamOpen] = useState(false);
     
     // Search functionality states
     const [searchTerm, setSearchTerm] = useState("");
@@ -78,23 +82,29 @@ export function Sidebar() {
         setNoResultsFound(results.length === 0);
     }, [searchTerm]);
 
-    // Handle WiFi selection
+    // Handle WiFi selection and navigation
     const handleWifiSelect = (wifi) => {
         setSelectedWifi(wifi);
         setSearchTerm(wifi.name);
         setSearchResults([]);
         setNoResultsFound(false);
-    };
-
-    // Navigate to location and highlight the WiFi
-    const handleGoToLocation = (wifi) => {
         setIsSidebarOpen(false);
+        
+        // Navigate to the location immediately
         navigate(wifi.path, { 
             state: { 
                 highlightedWifi: wifi.name,
                 scrollToWifi: true 
             } 
         });
+    };
+
+    // Clear search input
+    const handleClearSearch = () => {
+        setSearchTerm("");
+        setSearchResults([]);
+        setSelectedWifi(null);
+        setNoResultsFound(false);
     };
 
     return (
@@ -108,15 +118,27 @@ export function Sidebar() {
 
                 {/* Search Component */}
                 <div className="search-container">
-                    <input
-                        type="text"
-                        placeholder="Tìm kiếm tên WiFi..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        onFocus={() => setIsSearchFocused(true)}
-                        onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
-                        className="search-input"
-                    />
+                    <div className="search-input-wrapper">
+                        <input
+                            type="text"
+                            placeholder="Tìm kiếm tên WiFi..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onFocus={() => setIsSearchFocused(true)}
+                            onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                            className="search-input"
+                        />
+                        {searchTerm && (
+                            <button 
+                                className="clear-search-button"
+                                onClick={handleClearSearch}
+                                aria-label="Xóa tìm kiếm"
+                                onMouseDown={(e) => e.preventDefault()} // Prevent input blur
+                            >
+                                <X size={16} />
+                            </button>
+                        )}
+                    </div>
                     {isSearchFocused && (
                         <div className="search-results-container">
                             {searchResults.length > 0 ? (
@@ -146,12 +168,6 @@ export function Sidebar() {
                         <div className="selected-wifi-name">
                             {selectedWifi.name}
                         </div>
-                        <button
-                            className="go-to-wifi-button"
-                            onClick={() => handleGoToLocation(selectedWifi)}
-                        >
-                            Đến vị trí
-                        </button>
                     </div>
                 )}
 
@@ -246,20 +262,20 @@ export function Sidebar() {
                             Nhà công vụ số 5 {isNha5Open ? "▲" : "▼"}
                         </button>
                         {isNha5Open && (
-                            <>
+                            <div className="floor-buttons-container">
                                 <SidebarButton 
                                     to="/tang1ncvso5" 
                                     text="Tầng 1" 
-                                    className="nha-cong-vu-tang"
+                                    className="floor-button"
                                     isHighlighted={selectedWifi?.path === "/tang1ncvso5"}
                                 />
                                 <SidebarButton 
                                     to="/tang2ncvso5" 
                                     text="Tầng 2" 
-                                    className="nha-cong-vu-tang"
+                                    className="floor-button"
                                     isHighlighted={selectedWifi?.path === "/tang2ncvso5"}
                                 />
-                            </>
+                            </div>
                         )}
 
                         {/* Nhà 6 */}
@@ -270,20 +286,20 @@ export function Sidebar() {
                             Nhà công vụ số 6 {isNha6Open ? "▲" : "▼"}
                         </button>
                         {isNha6Open && (
-                            <>
+                            <div className="floor-buttons-container">
                                 <SidebarButton 
                                     to="/tang1ncvso6" 
                                     text="Tầng 1" 
-                                    className="nha-cong-vu-tang"
+                                    className="floor-button"
                                     isHighlighted={selectedWifi?.path === "/tang1ncvso6"}
                                 />
                                 <SidebarButton 
                                     to="/tang2ncvso6" 
                                     text="Tầng 2" 
-                                    className="nha-cong-vu-tang"
+                                    className="floor-button"
                                     isHighlighted={selectedWifi?.path === "/tang2ncvso6"}
                                 />
-                            </>
+                            </div>
                         )}
 
                         {/* Nhà 7 */}
@@ -294,20 +310,20 @@ export function Sidebar() {
                             Nhà công vụ số 7 {isNha7Open ? "▲" : "▼"}
                         </button>
                         {isNha7Open && (
-                            <>
+                            <div className="floor-buttons-container">
                                 <SidebarButton 
                                     to="/tang1ncvso7" 
                                     text="Tầng 1" 
-                                    className="nha-cong-vu-tang"
+                                    className="floor-button"
                                     isHighlighted={selectedWifi?.path === "/tang1ncvso7"}
                                 />
                                 <SidebarButton 
                                     to="/tang2ncvso7" 
                                     text="Tầng 2" 
-                                    className="nha-cong-vu-tang"
+                                    className="floor-button"
                                     isHighlighted={selectedWifi?.path === "/tang2ncvso7"}
                                 />
-                            </>
+                            </div>
                         )}
                     </div>
                 )}
@@ -334,6 +350,23 @@ export function Sidebar() {
                     </nav>
                 )}
 
+                {/* Vovinam */}
+                <button 
+                    className={`toggle-button ${selectedWifi?.path.includes("vovinam") ? "highlighted" : ""}`}
+                    onClick={() => setIsVovinamOpen(!isVovinamOpen)}
+                >
+                    Vị trí AP sân Vovinam {isVovinamOpen ? "▲" : "▼"}
+                </button>
+                {isVovinamOpen && (
+                    <nav className="sidebar-menu">
+                        <SidebarButton 
+                            to="/sanvovinam" 
+                            text="Sân Vovinam" 
+                            isHighlighted={selectedWifi?.path === "/sanvovinam"}
+                        />
+                    </nav>
+                )}
+
                 {/* Thống kê */}
                 <Link to="/thongke" className="stat-button">
                     Thống kê số lượng wifi
@@ -343,11 +376,11 @@ export function Sidebar() {
     );
 }
 
-function SidebarButton({ to, text, isHighlighted = false, ...props }) {
+function SidebarButton({ to, text, isHighlighted = false, className = "", ...props }) {
     return (
         <Link 
             to={to} 
-            className={`sidebar-button ${isHighlighted ? "highlighted" : ""}`}
+            className={`sidebar-button ${className} ${isHighlighted ? "highlighted" : ""}`}
             {...props}
         >
             {text}

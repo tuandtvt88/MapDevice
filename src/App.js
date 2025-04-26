@@ -20,6 +20,7 @@ import { Tang1NCVso7 } from "./components/Tang1NCVso7";
 import { Tang2NCVso7 } from "./components/Tang2NCVso7";
 import { KTXDomB } from "./components/KTXDomB";
 import { KTXDomA } from "./components/KTXDomA";
+import { SanVovinam } from "./components/SanVovinam";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="ktxdomb" element={<KTXDomB/>}></Route>
         <Route path="ktxdoma" element={<KTXDomA/>}></Route>
         <Route path="tang2ncvso7" element={<Tang2NCVso7/>}></Route>
+        <Route path="sanvovinam" element={<SanVovinam/>}></Route>
         <Route path="thongke" element={<ThongKeWiFi/>}></Route>
         </Route>
     </Routes>
