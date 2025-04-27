@@ -1,9 +1,0 @@
-# Bỏ qua file môi trường
-.env
-sql.env
-
-# Bỏ qua thư mục node_modules
-node_modules/
-
-# Bỏ build nếu là React
-build/
