@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
 import "./KTX.css";
 import image from "../assets/KTXDomB.jpg";
-import { Wifi, Trash2 } from "lucide-react";
+import { Wifi} from "lucide-react";
 
 // ✅ Xuất danh sách WiFi để dùng ở các file khác
 export const wifiLocations = [
