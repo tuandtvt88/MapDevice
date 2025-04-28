@@ -24,7 +24,7 @@ import './components/App.css';
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename={"/MapDevice"}>
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="tang1beta" element={<Tang1Beta />} />
