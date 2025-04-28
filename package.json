@@ -6,7 +6,7 @@
     "node": ">=20.0.0"
   },
   "packageManager": "yarn@3.6.3",
-  "homepage": "https://tuandtvt88.github.io/MapDevice",
+  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
