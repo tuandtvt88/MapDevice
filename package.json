@@ -2,11 +2,11 @@
   "name": "MapDevice",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/MapDevice",
   "engines": {
     "node": ">=20.0.0"
   },
   "packageManager": "yarn@3.6.3",
-  "homepage": "https://mapdevice.pages.dev/MapDevice",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
