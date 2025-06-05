@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
-import { X } from "lucide-react"; // Import X icon from lucide-react
+import { X } from "lucide-react";
 
 // Import all WiFi locations from different files
 import { wifiLocations as wifiTang1Beta } from "./Tang1Beta";
@@ -65,6 +65,7 @@ export function Sidebar() {
     const [isSearchFocused, setIsSearchFocused] = useState(false);
     const [noResultsFound, setNoResultsFound] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Handle search input changes
     useEffect(() => {
@@ -76,7 +77,7 @@ export function Sidebar() {
 
         const results = allWifiLocations.filter(wifi =>
             wifi.name.toLowerCase().includes(searchTerm.toLowerCase())
-        ).slice(0, 5); // Limit to 5 results
+        ).slice(0, 5);
 
         setSearchResults(results);
         setNoResultsFound(results.length === 0);
@@ -90,11 +91,10 @@ export function Sidebar() {
         setNoResultsFound(false);
         setIsSidebarOpen(false);
         
-        // Navigate to the location immediately
         navigate(wifi.path, { 
             state: { 
                 highlightedWifi: wifi.name,
-                scrollToWifi: true 
+                scrollToWifi: false // Changed to false to prevent moving positions
             } 
         });
     };
@@ -105,6 +105,14 @@ export function Sidebar() {
         setSearchResults([]);
         setSelectedWifi(null);
         setNoResultsFound(false);
+        // Clear the highlight by navigating to current location without highlight
+        navigate(location.pathname, { 
+            state: { 
+                highlightedWifi: null,
+                scrollToWifi: false 
+            },
+            replace: true
+        });
     };
 
     return (
@@ -133,7 +141,7 @@ export function Sidebar() {
                                 className="clear-search-button"
                                 onClick={handleClearSearch}
                                 aria-label="Xóa tìm kiếm"
-                                onMouseDown={(e) => e.preventDefault()} // Prevent input blur
+                                onMouseDown={(e) => e.preventDefault()}
                             >
                                 <X size={16} />
                             </button>
@@ -161,15 +169,6 @@ export function Sidebar() {
                         </div>
                     )}
                 </div>
-
-                {/* Highlight selected WiFi if it's in this section */}
-                {selectedWifi && (
-                    <div className="selected-wifi-info">
-                        <div className="selected-wifi-name">
-                            {selectedWifi.name}
-                        </div>
-                    </div>
-                )}
 
                 {/* Beta */}
                 <button 

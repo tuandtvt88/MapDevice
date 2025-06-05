@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Tang1Beta.css";
 import image from "../assets/T2.png";
-import { Wifi } from "lucide-react"; // Import icon Wi-Fi
+import { Wifi } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 export const wifiLocations = [
         { name: "AP-Tang-2-206-U6", top: "13%", left: "20%" },
@@ -16,29 +17,53 @@ export const wifiLocations = [
         { name: "AP-Tang-2-220-U6", top: "90%", left: "87%" },
         { name: "AP-Tang-2-222-U6", top: "90%", left: "17%" },
         { name: "LAB SE-ARUBA", top: "63%", left: "4%" },
-        { name: "AP-Tang-2-224-U6P", top: "68%", left: "20%" },
-        { name: "AP-Tang-2-201-U6P", top: "52%", left: "13%" },
+        { name: "AP-Tang-2-201-U6P", top: "68%", left: "20%" },
+        { name: "AP-Tang-2-202-U6P", top: "52%", left: "13%" },
         { name: "AP-Tang-2-204-U6P", top: "36%", left: "08%" },
         { name: "AP-Tang-2-203-U6P", top: "33%", left: "22%" },
         
     ];
 
     export function Tang2Beta() {
-        return (
-            <div className="tang1beta">
-                <div className="map-container">
-                    <img src={image} alt="Tang 1 Beta" className="map-image" />
-                    {wifiLocations.map((wifi, index) => (
+    const location = useLocation();
+    const [highlightedWifi, setHighlightedWifi] = useState(null);
+
+    useEffect(() => {
+        if (location.state?.highlightedWifi) {
+            setHighlightedWifi(location.state.highlightedWifi);
+        } else {
+            setHighlightedWifi(null); // Clear highlight when no search term
+        }
+    }, [location.state]);
+
+    return (
+        <div className="tang1beta">
+            <div className="map-container">
+                <img src={image} alt="Tang 1 Beta" className="map-image" />
+                {wifiLocations.map((wifi, index) => (
+                    <div
+                        key={index}
+                        className="wifi-marker"
+                        style={{ top: wifi.top, left: wifi.left }}
+                        data-name={wifi.name}
+                    >
+                        <Wifi
+                            className="wifi-icon"
+                            size={28}
+                            color={highlightedWifi === wifi.name ? "red" : "green"}
+                        />
                         <div
-                            key={index}
-                            className="wifi-marker"
-                            style={{ top: wifi.top, left: wifi.left }}
+                            className="wifi-name"
+                            style={{
+                                color: highlightedWifi === wifi.name ? "red" : "blue",
+                                fontWeight: highlightedWifi === wifi.name ? "bold" : "bold",
+                            }}
                         >
-                            <Wifi className="wifi-icon" size={28} color="green" />
-                            <div className="wifi-name">{wifi.name}</div>
+                            {wifi.name}
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
-        );
-    }
+        </div>
+    );
+}

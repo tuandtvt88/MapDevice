@@ -58,6 +58,16 @@
 .wifi-name:hover {
   transform: scale(1.5);
 }
+.wifi-marker.highlighted {
+    z-index: 100;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.wifi-marker.highlighted .wifi-name {
+    font-weight: bold;
+    color: red;
+}
 /* Đảm bảo layout ổn định trên màn hình nhỏ */
 @media screen and (max-width: 768px) {
   .map-image {
