@@ -17,10 +17,11 @@ export const wifiLocations = [
         { name: "AP-Tang-2-220-U6", top: "90%", left: "87%" },
         { name: "AP-Tang-2-222-U6", top: "90%", left: "17%" },
         { name: "LAB SE-ARUBA", top: "63%", left: "4%" },
-        { name: "AP-Tang-2-201-U6P", top: "68%", left: "20%" },
+        { name: "AP-Tang-2-201-U6P", top: "68%", left: "11%" },
+		{ name: "AP-Tang-2-201-2-U6P", top: "66%", left: "22%" },
         { name: "AP-Tang-2-202-U6P", top: "52%", left: "13%" },
         { name: "AP-Tang-2-204-U6P", top: "36%", left: "08%" },
-        { name: "AP-Tang-2-203-U6P", top: "33%", left: "22%" },
+        { name: "AP-Tang-2-203-U6P", top: "39%", left: "20%" },
         
     ];
 
