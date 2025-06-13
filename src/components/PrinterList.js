@@ -13,8 +13,8 @@ const PrinterList = () => {
       { name: "HP LaserJet Pro M404DW", department: "CTSV", ip: "172.16.0.154", mac: "C8:5A:CF:D0:B6:51" }
     ],
     highSchool: [
-      { name: "MÁY PHOTO TOSHIBA 357", department: "SCHOOL QUY NHƠN", ip: "172.16.0.43", mac: "00:80:91:76:D7:98" },
-      { name: "MF 244DW", department: "SCHOOL QUY NHƠN", ip: "172.16.0.26", mac: "F0:003:8C:95:1D:C4" },
+      { name: "MÁY PHOTO TOSHIBA 357", department: "SCHOOL QUY NHƠN", ip: "172.16.0.43", mac: "00:80:91:76:D7:9B" },
+      { name: "MF 244DW", department: "SCHOOL QUY NHƠN", ip: "172.16.0.26", mac: "F0:03:8C:95:1D:C4" },
       { name: "MF 244DW", department: "GV FSC", ip: "172.16.0.88", mac: "20:4E:F6:0A:35:BD" }
     ]
   };
