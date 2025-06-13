@@ -68,6 +68,20 @@
     font-weight: bold;
     color: red;
 }
+
+/* Special styling for Printer List button */
+.sidebar-button.printer-list-button {
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    font-weight: bold;    
+    transition: all 0.3s ease;
+}
+
+.sidebar-button.printer-list-button:hover {
+    background: linear-gradient(90deg, #2980b9, #27ae60);
+    transform: scale(1.05);
+}
+
+
 /* Đảm bảo layout ổn định trên màn hình nhỏ */
 @media screen and (max-width: 768px) {
   .map-image {

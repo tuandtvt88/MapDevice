@@ -44,7 +44,9 @@ export function Tang2Gamma() {
                     <div
                         key={index}
                         className="wifi-marker"
-                        style={{ top: wifi.top, left: wifi.left }}
+                        style={{ top: wifi.top, left: wifi.left ,
+                        animation: highlightedWifi === wifi.name ? 'pulse 0.5s infinite' : 'none'
+                        }}
                         data-name={wifi.name}
                     >
                         <Wifi

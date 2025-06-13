@@ -1,0 +1,134 @@
+/* PrinterList.css */
+.printer-list-container {
+  width: 50%; /* Take half of main width */
+  margin: 10px auto; /* Center the container */
+  height: 100vh; /* Full height of main */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* .printer-list-title {
+  text-align: center;
+  color: #2c3e50;
+  
+ 
+  
+  flex-shrink: 0;
+} */
+
+.printer-sections-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Subtract title height */
+  gap: 5px;
+  overflow: hidden;
+}
+
+
+/* Section đầu tiên (Đại Học) cao hơn */
+.printer-section:first-child {
+  height: 350px; /* 👈 Tăng chiều cao để thấy rõ tiêu đề + bảng */
+}
+
+/* Section thứ hai (Phổ Thông) thấp hơn */
+.printer-section:last-child {
+  height: 200px; /* 👈 Giảm chiều cao để phù hợp */
+}
+
+.printer-section {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 5px 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 400px; /* 👈 Tăng chiều cao tổng thể của section */
+  overflow: hidden;
+}
+
+.section-title {
+  color: #3498db;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+  font-size: 1.3rem;
+  margin-bottom: 5px; /* 👈 Giúp tiêu đề cách bảng 1 chút */
+  flex-shrink: 0; /* 👈 Không bị thu nhỏ khi thiếu không gian */
+}
+
+.printer-table-container {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100%; /* 👈 Đảm bảo bảng không vượt ra ngoài section */
+}
+
+.printer-table {
+  width: 100%;
+  font-size: 0.9rem;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.printer-table th {
+  background-color: #3498db;
+  color: white;
+  padding: 1px 11px;
+  text-align: left;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.printer-table td {
+  padding: 5px 5px;
+  border-bottom: 1px solid #ddd;
+  word-break: normal;
+}
+
+.printer-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.printer-table tr:hover {
+  background-color: #e3f2fd;
+}
+
+@media (max-width: 768px) {
+  .printer-list-container {
+    width: 107%;
+    height: auto;
+    padding: 5px;
+    margin-top: 80px;
+  }
+
+  .printer-section {
+    height: auto !important;
+    max-height: none;
+    padding: 8px;
+  }
+
+  .section-title {
+    font-size: 1rem;
+    padding-bottom: 3px;
+    margin-bottom: 4px;
+  }
+
+  .printer-table-container {
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+
+  .printer-table {
+    width: 100%;
+    min-width: 300px;
+    font-size: 0.74rem;
+  }
+
+  .printer-table th,
+  .printer-table td {
+    padding: 4px 6px;
+    word-break: break-word;
+  }
+}

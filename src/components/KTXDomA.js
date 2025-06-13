@@ -29,7 +29,9 @@ export function KTXDomA() {
                     <div
                         key={index}
                         className="wifi-marker-ktx"
-                        style={{ top: wifi.top, left: wifi.left }}
+                        style={{ top: wifi.top, left: wifi.left,
+                        animation: highlightedWifi === wifi.name ? 'pulse 0.5s infinite' : 'none'
+                         }}
                         data-name={wifi.name}
                     >
                         <Wifi

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
-import { X } from "lucide-react";
+import { X, Printer, Wifi, BarChart2 } from "lucide-react"; // Added Wifi and BarChart2 icons
 
 // Import all WiFi locations from different files
 import { wifiLocations as wifiTang1Beta } from "./Tang1Beta";
@@ -94,7 +94,7 @@ export function Sidebar() {
         navigate(wifi.path, { 
             state: { 
                 highlightedWifi: wifi.name,
-                scrollToWifi: false // Changed to false to prevent moving positions
+                scrollToWifi: false
             } 
         });
     };
@@ -105,7 +105,6 @@ export function Sidebar() {
         setSearchResults([]);
         setSelectedWifi(null);
         setNoResultsFound(false);
-        // Clear the highlight by navigating to current location without highlight
         navigate(location.pathname, { 
             state: { 
                 highlightedWifi: null,
@@ -175,7 +174,11 @@ export function Sidebar() {
                     className={`toggle-button ${selectedWifi?.path.includes("beta") ? "highlighted" : ""}`}
                     onClick={() => setIsBetaOpen(!isBetaOpen)}
                 >
-                    Vị trí AP nhà Beta {isBetaOpen ? "▲" : "▼"}
+                    <div className="button-content">
+                        <Wifi size={18} className="button-icon" />
+                        <span>Vị trí AP nhà Beta</span>
+                        {isBetaOpen ? "▲" : "▼"}
+                    </div>
                 </button>
                 {isBetaOpen && (
                     <nav className="sidebar-menu">
@@ -212,7 +215,11 @@ export function Sidebar() {
                     className={`toggle-button ${selectedWifi?.path.includes("gamma") ? "highlighted" : ""}`}
                     onClick={() => setIsGammaOpen(!isGammaOpen)}
                 >
-                    Vị trí AP nhà Gamma {isGammaOpen ? "▲" : "▼"}
+                    <div className="button-content">
+                        <Wifi size={18} className="button-icon" />
+                        <span>Vị trí AP nhà Gamma</span>
+                        {isGammaOpen ? "▲" : "▼"}
+                    </div>
                 </button>
                 {isGammaOpen && (
                     <nav className="sidebar-menu">
@@ -249,7 +256,11 @@ export function Sidebar() {
                     className={`toggle-button ${selectedWifi?.path.includes("ncv") ? "highlighted" : ""}`}
                     onClick={() => setIsCongVuOpen(!isCongVuOpen)}
                 >
-                    Vị trí AP nhà Công Vụ {isCongVuOpen ? "▲" : "▼"}
+                    <div className="button-content">
+                        <Wifi size={18} className="button-icon" />
+                        <span>Vị trí AP nhà Công Vụ</span>
+                        {isCongVuOpen ? "▲" : "▼"}
+                    </div>
                 </button>
                 {isCongVuOpen && (
                     <div className="sidebar-menu nha-cong-vu">
@@ -258,7 +269,11 @@ export function Sidebar() {
                             className={`nha-cong-vu-title ${selectedWifi?.path.includes("so5") ? "highlighted" : ""}`}
                             onClick={() => setIsNha5Open(!isNha5Open)}
                         >
-                            Nhà công vụ số 5 {isNha5Open ? "▲" : "▼"}
+                            <div className="button-content">
+                                <Wifi size={16} className="button-icon" />
+                                <span>Nhà công vụ số 5</span>
+                                {isNha5Open ? "▲" : "▼"}
+                            </div>
                         </button>
                         {isNha5Open && (
                             <div className="floor-buttons-container">
@@ -282,7 +297,11 @@ export function Sidebar() {
                             className={`nha-cong-vu-title ${selectedWifi?.path.includes("so6") ? "highlighted" : ""}`}
                             onClick={() => setIsNha6Open(!isNha6Open)}
                         >
-                            Nhà công vụ số 6 {isNha6Open ? "▲" : "▼"}
+                            <div className="button-content">
+                                <Wifi size={16} className="button-icon" />
+                                <span>Nhà công vụ số 6</span>
+                                {isNha6Open ? "▲" : "▼"}
+                            </div>
                         </button>
                         {isNha6Open && (
                             <div className="floor-buttons-container">
@@ -306,7 +325,11 @@ export function Sidebar() {
                             className={`nha-cong-vu-title ${selectedWifi?.path.includes("so7") ? "highlighted" : ""}`}
                             onClick={() => setIsNha7Open(!isNha7Open)}
                         >
-                            Nhà công vụ số 7 {isNha7Open ? "▲" : "▼"}
+                            <div className="button-content">
+                                <Wifi size={16} className="button-icon" />
+                                <span>Nhà công vụ số 7</span>
+                                {isNha7Open ? "▲" : "▼"}
+                            </div>
                         </button>
                         {isNha7Open && (
                             <div className="floor-buttons-container">
@@ -332,7 +355,11 @@ export function Sidebar() {
                     className={`toggle-button ${selectedWifi?.path.includes("ktx") ? "highlighted" : ""}`}
                     onClick={() => setIsKTXOpen(!isKTXOpen)}
                 >
-                    Vị trí AP Kí Túc Xá {isKTXOpen ? "▲" : "▼"}
+                    <div className="button-content">
+                        <Wifi size={18} className="button-icon" />
+                        <span>Vị trí AP Kí Túc Xá</span>
+                        {isKTXOpen ? "▲" : "▼"}
+                    </div>
                 </button>
                 {isKTXOpen && (
                     <nav className="sidebar-menu">
@@ -354,7 +381,11 @@ export function Sidebar() {
                     className={`toggle-button ${selectedWifi?.path.includes("vovinam") ? "highlighted" : ""}`}
                     onClick={() => setIsVovinamOpen(!isVovinamOpen)}
                 >
-                    Vị trí AP sân Vovinam {isVovinamOpen ? "▲" : "▼"}
+                    <div className="button-content">
+                        <Wifi size={18} className="button-icon" />
+                        <span>Vị trí AP sân Vovinam</span>
+                        {isVovinamOpen ? "▲" : "▼"}
+                    </div>
                 </button>
                 {isVovinamOpen && (
                     <nav className="sidebar-menu">
@@ -366,22 +397,35 @@ export function Sidebar() {
                     </nav>
                 )}
 
+                {/* Printer List with special styling */}
+                <SidebarButton
+                    to="/danhsachmayin"
+                    text="Danh sách máy in"
+                    icon={<Printer size={16} />}
+                    isHighlighted={location.pathname === "/danhsachmayin"}
+                    className="printer-list-button"
+                />
+
                 {/* Thống kê */}
                 <Link to="/thongke" className="stat-button">
-                    Thống kê số lượng wifi
+                    <div className="button-content">
+                        <BarChart2 size={18} className="button-icon" />
+                        <span>Thống kê số lượng wifi</span>
+                    </div>
                 </Link>
             </div>
         </>
     );
 }
 
-function SidebarButton({ to, text, isHighlighted = false, className = "", ...props }) {
+function SidebarButton({ to, text, isHighlighted = false, className = "", icon, ...props }) {
     return (
         <Link 
             to={to} 
             className={`sidebar-button ${className} ${isHighlighted ? "highlighted" : ""}`}
             {...props}
         >
+            {icon && <span className="sidebar-button-icon">{icon}</span>}
             {text}
         </Link>
     );
