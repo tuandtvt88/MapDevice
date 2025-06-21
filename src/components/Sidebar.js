@@ -1,51 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
 import { X, Printer, Wifi, BarChart2 } from "lucide-react"; // Added Wifi and BarChart2 icons
-
-// Import all WiFi locations from different files
-import { wifiLocations as wifiTang1Beta } from "./Tang1Beta";
-import { wifiLocations as wifiTang2Beta } from "./Tang2Beta";
-import { wifiLocations as wifiTang3Beta } from "./Tang3Beta";
-import { wifiLocations as wifiTang4Beta } from "./Tang4Beta";
-import { wifiLocations as wifiTang5Beta } from "./Tang5Beta";
-import { wifiLocations as wifiTang1Gamma } from "./Tang1Gamma";
-import { wifiLocations as wifiTang2Gamma } from "./Tang2Gamma";
-import { wifiLocations as wifiTang3Gamma } from "./Tang3Gamma";
-import { wifiLocations as wifiTang4Gamma } from "./Tang4Gamma";
-import { wifiLocations as wifiTang5Gamma } from "./Tang5Gamma";
-import { wifiLocations as wifiTang1NCVso5 } from "./Tang1NCVso5";
-import { wifiLocations as wifiTang2NCVso5 } from "./Tang2NCVso5";
-import { wifiLocations as wifiTang1NCVso6 } from "./Tang1NCVso6";
-import { wifiLocations as wifiTang2NCVso6 } from "./Tang2NCVso6";
-import { wifiLocations as wifiTang1NCVso7 } from "./Tang1NCVso7";
-import { wifiLocations as wifiTang2NCVso7 } from "./Tang2NCVso7";
-import { wifiLocations as wifiKTXDomA } from "./KTXDomA";
-import { wifiLocations as wifiKTXDomB } from "./KTXDomB";
-import { wifiLocations as wifiSanVovinam } from "./SanVovinam";
-
-// Combine all WiFi locations into one array with their corresponding paths
-const allWifiLocations = [
-  ...wifiTang1Beta.map(wifi => ({ ...wifi, path: "/tang1beta" })),
-  ...wifiTang2Beta.map(wifi => ({ ...wifi, path: "/tang2beta" })),
-  ...wifiTang3Beta.map(wifi => ({ ...wifi, path: "/tang3beta" })),
-  ...wifiTang4Beta.map(wifi => ({ ...wifi, path: "/tang4beta" })),
-  ...wifiTang5Beta.map(wifi => ({ ...wifi, path: "/tang5beta" })),
-  ...wifiTang1Gamma.map(wifi => ({ ...wifi, path: "/tang1gamma" })),
-  ...wifiTang2Gamma.map(wifi => ({ ...wifi, path: "/tang2gamma" })),
-  ...wifiTang3Gamma.map(wifi => ({ ...wifi, path: "/tang3gamma" })),
-  ...wifiTang4Gamma.map(wifi => ({ ...wifi, path: "/tang4gamma" })),
-  ...wifiTang5Gamma.map(wifi => ({ ...wifi, path: "/tang5gamma" })),
-  ...wifiTang1NCVso5.map(wifi => ({ ...wifi, path: "/tang1ncvso5" })),
-  ...wifiTang2NCVso5.map(wifi => ({ ...wifi, path: "/tang2ncvso5" })),
-  ...wifiTang1NCVso6.map(wifi => ({ ...wifi, path: "/tang1ncvso6" })),
-  ...wifiTang2NCVso6.map(wifi => ({ ...wifi, path: "/tang2ncvso6" })),
-  ...wifiTang1NCVso7.map(wifi => ({ ...wifi, path: "/tang1ncvso7" })),
-  ...wifiTang2NCVso7.map(wifi => ({ ...wifi, path: "/tang2ncvso7" })),
-  ...wifiKTXDomA.map(wifi => ({ ...wifi, path: "/ktxdomA" })),
-  ...wifiKTXDomB.map(wifi => ({ ...wifi, path: "/ktxdomB" })),
-  ...wifiSanVovinam.map(wifi => ({ ...wifi, path: "/sanvovinam" })),
-];
+import { allWifiLocations } from './wifiData'; // Import dữ liệu WiFi cục bộ
 
 export function Sidebar() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -66,22 +23,52 @@ export function Sidebar() {
     const [noResultsFound, setNoResultsFound] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const searchContainerRef = useRef(null);
 
-    // Handle search input changes
     useEffect(() => {
-        if (searchTerm.trim() === "") {
+        const params = new URLSearchParams(location.search);
+        const search = params.get('search');
+        if (search) {
+            setSearchTerm(search);
+            const results = allWifiLocations.filter(wifi =>
+                wifi.name.toLowerCase().includes(search.toLowerCase())
+            );
+            setSearchResults(results);
+            setNoResultsFound(results.length === 0);
+        } else {
             setSearchResults([]);
             setNoResultsFound(false);
-            return;
         }
+    }, [location.search]);
 
-        const results = allWifiLocations.filter(wifi =>
-            wifi.name.toLowerCase().includes(searchTerm.toLowerCase())
-        ).slice(0, 5);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+                setIsSearchFocused(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
-        setSearchResults(results);
-        setNoResultsFound(results.length === 0);
-    }, [searchTerm]);
+    const handleSearchChange = (e) => {
+        const term = e.target.value;
+        setSearchTerm(term);
+
+        if (term.trim() === "") {
+            setSearchResults([]);
+            setNoResultsFound(false);
+            setSelectedWifi(null);
+        } else {
+            const results = allWifiLocations.filter(wifi =>
+                wifi.name.toLowerCase().includes(term.toLowerCase())
+            );
+            setSearchResults(results);
+            setNoResultsFound(results.length === 0);
+        }
+    };
 
     // Handle WiFi selection and navigation
     const handleWifiSelect = (wifi) => {
@@ -124,13 +111,13 @@ export function Sidebar() {
                 <button className="close-btn" onClick={() => setIsSidebarOpen(false)}>✖</button>
 
                 {/* Search Component */}
-                <div className="search-container">
+                <div className="search-container" ref={searchContainerRef}>
                     <div className="search-input-wrapper">
                         <input
                             type="text"
                             placeholder="Tìm kiếm tên WiFi..."
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onChange={handleSearchChange}
                             onFocus={() => setIsSearchFocused(true)}
                             onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                             className="search-input"
