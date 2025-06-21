@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MapDevice/static/css/main.f04479f5.css",
-    "main.js": "/MapDevice/static/js/main.c93d8ece.js",
+    "main.css": "/MapDevice/static/css/main.44a91c58.css",
+    "main.js": "/MapDevice/static/js/main.bd1aad33.js",
     "static/media/T2Gamma.jpg": "/MapDevice/static/media/T2Gamma.47766a3dbbc08f0422b5.jpg",
     "static/media/T3Gamma.jpg": "/MapDevice/static/media/T3Gamma.2de051e71ed78f2b68c4.jpg",
     "static/media/T4GammaCSD.jpg": "/MapDevice/static/media/T4GammaCSD.7f84bd3b2b8c26a46a25.jpg",
@@ -23,11 +23,11 @@
     "static/media/t2ncvso7.jpg": "/MapDevice/static/media/t2ncvso7.99311ab690581c7c6c04.jpg",
     "static/media/T2NCVso5.jpg": "/MapDevice/static/media/T2NCVso5.00bff225e5f2fb01cdc9.jpg",
     "index.html": "/MapDevice/index.html",
-    "main.f04479f5.css.map": "/MapDevice/static/css/main.f04479f5.css.map",
-    "main.c93d8ece.js.map": "/MapDevice/static/js/main.c93d8ece.js.map"
+    "main.44a91c58.css.map": "/MapDevice/static/css/main.44a91c58.css.map",
+    "main.bd1aad33.js.map": "/MapDevice/static/js/main.bd1aad33.js.map"
   },
   "entrypoints": [
-    "static/css/main.f04479f5.css",
-    "static/js/main.c93d8ece.js"
+    "static/css/main.44a91c58.css",
+    "static/js/main.bd1aad33.js"
   ]
 }
