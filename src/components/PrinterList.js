@@ -30,7 +30,7 @@ const PrinterList = () => {
   // Driver URLs cho tất cả máy in
   const driverUrls = {
     "CANON MF 244DW": "https://drive.google.com/file/d/1wDygt1LkR5FepnLLLSDV-zSsdN4ZaWOM/view?usp=sharing",
-    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/1y92MpT2hjGrwqLLMy-1t11jrLR4LYZEr/view?usp=sharing",
+    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/101HzBNAc6aIopsOlHTsMZImcfOFpjLE3/view?usp=sharing",
     "IN MÀU EPSON L805": "https://drive.google.com/file/d/1CaW1MiXiSfkSKtHYcqeXpndAVSr7p99Z/view?usp=sharing",
     "CANON MF264DW": "https://drive.google.com/file/d/1GAAeCK2YA8guTZ0JVNONgylBsXbBI26J/view?usp=sharing",
     "PHOTO TOSHIBA 357": "https://drive.google.com/file/d/1hkJsW-5hMnWTUoosetuKpJwb9xySofyl/view?usp=sharing"
