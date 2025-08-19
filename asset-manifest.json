@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/MapDevice/static/css/main.44a91c58.css",
-    "main.js": "/MapDevice/static/js/main.c82e0e9c.js",
+    "main.js": "/MapDevice/static/js/main.01f552fd.js",
     "static/media/T2Gamma.jpg": "/MapDevice/static/media/T2Gamma.47766a3dbbc08f0422b5.jpg",
     "static/media/T3Gamma.jpg": "/MapDevice/static/media/T3Gamma.2de051e71ed78f2b68c4.jpg",
+    "static/media/T5Gamma.jpg": "/MapDevice/static/media/T5Gamma.237cce0e77314000f685.jpg",
     "static/media/T4GammaCSD.jpg": "/MapDevice/static/media/T4GammaCSD.7f84bd3b2b8c26a46a25.jpg",
-    "static/media/T5GammaCSD.jpg": "/MapDevice/static/media/T5GammaCSD.02f5d6d36bc561467ed4.jpg",
     "static/media/T1Gamma.jpg": "/MapDevice/static/media/T1Gamma.050de70e23eb81ab6f4e.jpg",
     "static/media/KTXDomA.jpg": "/MapDevice/static/media/KTXDomA.a78d79446c33f957afdd.jpg",
     "static/media/KTXDomB.jpg": "/MapDevice/static/media/KTXDomB.a6cd8e0a788fa9864c8b.jpg",
@@ -24,10 +24,10 @@
     "static/media/T2NCVso5.jpg": "/MapDevice/static/media/T2NCVso5.00bff225e5f2fb01cdc9.jpg",
     "index.html": "/MapDevice/index.html",
     "main.44a91c58.css.map": "/MapDevice/static/css/main.44a91c58.css.map",
-    "main.c82e0e9c.js.map": "/MapDevice/static/js/main.c82e0e9c.js.map"
+    "main.01f552fd.js.map": "/MapDevice/static/js/main.01f552fd.js.map"
   },
   "entrypoints": [
     "static/css/main.44a91c58.css",
-    "static/js/main.c82e0e9c.js"
+    "static/js/main.01f552fd.js"
   ]
 }
