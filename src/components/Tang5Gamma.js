@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Tang1Beta.css";
-import image from "../assets/T5GammaCSD.jpg";
+import image from "../assets/T5Gamma.jpg";
 import { Wifi } from "lucide-react"; // Import icon Wi-Fi
 import { useLocation } from "react-router-dom";
 
 // ✅ Xuất danh sách WiFi để dùng ở các file khác
 export const wifiLocations = [
-
+    { name: "AP-GM-Tang-5-BXD-U6", top: "91%", left: "58%"  },
 ];
 
 export function Tang5Gamma() {
