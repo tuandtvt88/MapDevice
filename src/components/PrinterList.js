@@ -39,7 +39,7 @@ const PrinterList = () => {
   // Manual URLs cho tất cả máy in
   const manualUrls = {
     "CANON MF 244DW": "https://drive.google.com/drive/folders/1caE1WmnqpCRju02fnTc9kRlwRmDYJpg7?usp=drive_link",
-    "HP LaserJet Pro M404DW": "https://truongthinhphat.net.vn/dich-vu/huong-dan-cai-dat-driver-may-in-hp-laserjet-pro-m404dwm404dnm404d-58",
+    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/101HzBNAc6aIopsOlHTsMZImcfOFpjLE3/view?usp=sharing",
     "IN MÀU EPSON L805": "https://drive.google.com/drive/folders/112fQvlSsEL1LKIE7-o5WbqHqdsSdXNTS?usp=sharing",
     "CANON MF264DW": "https://www.youtube.com/watch?v=ve9eChF3ako",
     "PHOTO TOSHIBA 357": "https://drive.google.com/drive/folders/1caE1WmnqpCRju02fnTc9kRlwRmDYJpg7?usp=drive_link"
