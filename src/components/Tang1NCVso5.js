@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 // ✅ Xuất danh sách WiFi để dùng ở các file khác
 export const wifiLocations = [
-    { name: "AP-NCV-5-T1-ACP", top: "53.04%", left: "43.90%" },
+    { name: "AP-NCV-5-T1-U6P", top: "53.04%", left: "43.90%" },
 ];
 
 export function Tang1NCVso5() {

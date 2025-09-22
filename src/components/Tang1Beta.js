@@ -16,10 +16,10 @@ export const wifiLocations = [
     { name: "AP-BT-FU-U6P", top: "82%", left: "76%" },
     { name: "AP-BT-TuyenSinh-U6P", top: "90%", left: "89%" },
     { name: "AP-BT-SanTruong-02-U6P", top: "78%", left: "40%" },
-    { name: "AP-BT-Thu vien-01-ACP", top: "83%", left: "14%" },
+    { name: "AP-BT-Thu vien-01-U6P", top: "83%", left: "14%" },
     { name: "AP-BT-Server-ACP", top: "97%", left: "14%" },
-    { name: "AP-BT-Thu vien-02-ACP", top: "53%", left: "14%" },
-    { name: "AP-BT-Thu vien-03-ACP", top: "33%", left: "14%" },
+    { name: "AP-BT-Thu vien-02-U6P", top: "53%", left: "14%" },
+    { name: "AP-BT-Thu vien-03-U6P", top: "33%", left: "14%" },
 ];
 
 export function Tang1Beta() {
