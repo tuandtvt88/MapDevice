@@ -8,6 +8,6 @@ git push origin master
 
 cập nhật up lên githup:
 git add .
-git commit -m "update16"
+git commit -m "update17"
 git push -u origin master 
 npm run deploy 
