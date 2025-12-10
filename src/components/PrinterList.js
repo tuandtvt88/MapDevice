@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './PrinterList.css';
-import { allWifiLocations } from './wifiData'; 
+import './PrinterList.css'; 
 
 // Dữ liệu máy in cục bộ
 const printersData = [
@@ -25,12 +23,11 @@ const PrinterList = () => {
     "Phổ Thông": []
   });
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   // Driver URLs cho tất cả máy in
   const driverUrls = {
     "CANON MF 244DW": "https://drive.google.com/file/d/1wDygt1LkR5FepnLLLSDV-zSsdN4ZaWOM/view?usp=sharing",
-    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/101HzBNAc6aIopsOlHTsMZImcfOFpjLE3/view?usp=sharing",
+    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/1y92MpT2hjGrwqLLMy-1t11jrLR4LYZEr/view?usp=sharing",
     "IN MÀU EPSON L805": "https://drive.google.com/file/d/1CaW1MiXiSfkSKtHYcqeXpndAVSr7p99Z/view?usp=sharing",
     "CANON MF264DW": "https://drive.google.com/file/d/1GAAeCK2YA8guTZ0JVNONgylBsXbBI26J/view?usp=sharing",
     "PHOTO TOSHIBA 357": "https://drive.google.com/file/d/1hkJsW-5hMnWTUoosetuKpJwb9xySofyl/view?usp=sharing"
@@ -80,19 +77,8 @@ const PrinterList = () => {
       alert('Chưa xác định WiFi cho máy in này.');
       return;
     }
-
-    const wifi = allWifiLocations.find(w => w.name === wifiName);
-
-    if (wifi) {
-      navigate(wifi.path, {
-        state: {
-          highlightedWifi: wifi.name,
-          scrollToWifi: true
-        }
-      });
-    } else {
-      alert(`Không tìm thấy thông tin vị trí cho WiFi: ${wifiName}`);
-    }
+    // Hiển thị thông tin WiFi
+    alert(`WiFi kết nối: ${wifiName}`);
   };
 
   const handleAction = (printer, type) => {
@@ -110,6 +96,7 @@ const PrinterList = () => {
 
   return (
     <div className="printer-list-container">
+      <h1>Danh sách máy in</h1>
       {Object.entries(groupedPrinters).map(([groupName, printers]) => (
         <div key={groupName} className="printer-group">
           <h2 className="group-title">{groupName}</h2>
@@ -137,6 +124,7 @@ const PrinterList = () => {
                       <button 
                         className="wifi-btn"
                         onClick={() => handleWifiClick(printer.wifi)}
+                        title={`WiFi: ${printer.wifi}`}
                       >
                         {printer.wifi}
                       </button>

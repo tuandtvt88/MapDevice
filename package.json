@@ -1,5 +1,5 @@
 {
-  "name": "MapDevice",
+  "name": "DevicePrinter",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -18,7 +18,7 @@
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://tuandtvt88.github.io/MapDevice",
+  "homepage": "https://tuandtvt88.github.io/DevicePrinter",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
