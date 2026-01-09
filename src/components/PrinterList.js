@@ -10,7 +10,7 @@ const printersData = [
   { id: 2, name: "CANON MF 244DW", department: "TUYỂN SINH T5", ip: "172.16.0.69", mac: "20:4E:F6:0A:53:75", type: 'university' },
   { id: 3, name: "CANON MF 244DW", department: "TUYỂN SINH T1", ip: "172.16.0.98", mac: "20:4E:F6:5F:9C:2D", type: 'university' },
   { id: 4, name: "CANON MF 244DW", department: "ĐÀO TẠO", ip: "172.16.0.54", mac: "20:4E:F6:0A:35:B7", type: 'university' },
-  { id: 5, name: "IN MÀU EPSON L805", department: "CTSV", ip: "172.16.0.55", mac: "DC:CD:2F:33:6F:81", type: 'university' },
+  { id: 5, name: "IN MÀU EPSON L8050", department: "CTSV", ip: "172.16.0.70", mac: "DC:CD:2F:E8:FE:01", type: 'university' },
   { id: 6, name: "CANON MF264DW", department: "VĂN PHÒNG FE", ip: "172.16.0.9", mac: "C4:AE:59:9E:12:2F", type: 'university' },
   { id: 7, name: "HP LaserJet Pro M404DW", department: "CTSV", ip: "172.16.0.154", mac: "C8:5A:CF:D0:B6:51", type: 'university' },
   // Phổ Thông
@@ -31,7 +31,7 @@ const PrinterList = () => {
   const driverUrls = {
     "CANON MF 244DW": "https://drive.google.com/file/d/1wDygt1LkR5FepnLLLSDV-zSsdN4ZaWOM/view?usp=sharing",
     "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/101HzBNAc6aIopsOlHTsMZImcfOFpjLE3/view?usp=sharing",
-    "IN MÀU EPSON L805": "https://drive.google.com/file/d/1CaW1MiXiSfkSKtHYcqeXpndAVSr7p99Z/view?usp=sharing",
+    "IN MÀU EPSON L8050": "https://www.epson.com.vn/Ink-Tank-Printers/L-Series/Epson-L8050/s/SPT_C11CK37501",
     "CANON MF264DW": "https://drive.google.com/file/d/1GAAeCK2YA8guTZ0JVNONgylBsXbBI26J/view?usp=sharing",
     "PHOTO TOSHIBA 357": "https://drive.google.com/file/d/1hkJsW-5hMnWTUoosetuKpJwb9xySofyl/view?usp=sharing"
   };
@@ -40,7 +40,7 @@ const PrinterList = () => {
   const manualUrls = {
     "CANON MF 244DW": "https://drive.google.com/drive/folders/1caE1WmnqpCRju02fnTc9kRlwRmDYJpg7?usp=drive_link",
     "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/101HzBNAc6aIopsOlHTsMZImcfOFpjLE3/view?usp=sharing",
-    "IN MÀU EPSON L805": "https://drive.google.com/drive/folders/112fQvlSsEL1LKIE7-o5WbqHqdsSdXNTS?usp=sharing",
+    "IN MÀU EPSON L8050": "https://drive.google.com/file/d/1GbNPm2nbd86W3DtSD7bGcXbCmwC9fdRp/view?usp=sharing",
     "CANON MF264DW": "https://www.youtube.com/watch?v=ve9eChF3ako",
     "PHOTO TOSHIBA 357": "https://drive.google.com/drive/folders/1caE1WmnqpCRju02fnTc9kRlwRmDYJpg7?usp=drive_link"
   };
