@@ -6,17 +6,19 @@ import { allWifiLocations } from './wifiData';
 // Dữ liệu máy in cục bộ
 const printersData = [
   // Đại Học
-  { id: 1, name: "CANON MF 244DW", department: "HÀNH CHÁNH", ip: "172.16.0.90", mac: "EC:2E:98:A7:FC:42", type: 'university' },
-  { id: 2, name: "CANON MF 244DW", department: "TUYỂN SINH T5", ip: "172.16.0.69", mac: "20:4E:F6:0A:53:75", type: 'university' },
-  { id: 3, name: "CANON MF 244DW", department: "TUYỂN SINH T1", ip: "172.16.0.98", mac: "20:4E:F6:5F:9C:2D", type: 'university' },
-  { id: 4, name: "CANON MF 244DW", department: "ĐÀO TẠO", ip: "172.16.0.54", mac: "20:4E:F6:0A:35:B7", type: 'university' },
-  { id: 5, name: "IN MÀU EPSON L8050", department: "CTSV", ip: "172.16.0.70", mac: "DC:CD:2F:E8:FE:01", type: 'university' },
-  { id: 6, name: "CANON MF264DW", department: "VĂN PHÒNG FE", ip: "172.16.0.9", mac: "C4:AE:59:9E:12:2F", type: 'university' },
-  { id: 7, name: "HP LaserJet Pro M404DW", department: "CTSV", ip: "172.16.0.154", mac: "C8:5A:CF:D0:B6:51", type: 'university' },
+  { id: 1, name: "CANON MF465DW", department: "HÀNH CHÁNH 1", ip: "172.16.0.254", mac: "20:0B:74:AA:CC:0F", type: 'university' },
+  { id: 2, name: "CANON MF244DW", department: "HÀNH CHÁNH 2", ip: "172.16.0.90", mac: "EC:2E:98:A7:FC:42", type: 'university' },
+  { id: 3, name: "CANON MF244DW", department: "TUYỂN SINH T5", ip: "172.16.0.69", mac: "20:4E:F6:0A:53:75", type: 'university' },
+  { id: 4, name: "CANON MF244DW", department: "TUYỂN SINH T1", ip: "172.16.0.98", mac: "20:4E:F6:5F:9C:2D", type: 'university' },
+  { id: 5, name: "CANON MF244DW", department: "ĐÀO TẠO", ip: "172.16.0.54", mac: "20:4E:F6:0A:35:B7", type: 'university' },
+  { id: 6, name: "IN MÀU EPSON L8050", department: "CTSV", ip: "172.16.0.70", mac: "DC:CD:2F:E8:FE:01", type: 'university' },
+  { id: 7, name: "CANON MF264DW", department: "VĂN PHÒNG FE", ip: "172.16.0.9", mac: "C4:AE:59:9E:12:2F", type: 'university' },
+  { id: 8, name: "HP LaserJet Pro M404DW", department: "CTSV", ip: "172.16.0.154", mac: "C8:5A:CF:D0:B6:51", type: 'university' },
+  { id: 9, name: "IN THẺ ENTRUST SIGMA DS2", department: "CTSV", ip: "Dùng cổng USB", mac: "XPS Card Printer", type: 'university' },
   // Phổ Thông
-  { id: 8, name: "PHOTO TOSHIBA 357", department: "VĂN PHÒNG FSC", ip: "172.16.0.43", mac: "00:80:91:76:D7:9B", type: 'high_school' },
-  { id: 9, name: "CANON MF 244DW", department: "VĂN PHÒNG FSC", ip: "172.16.0.26", mac: "F0:03:8C:95:1D:C4", type: 'high_school' },
-  { id: 10, name: "CANON MF 244DW", department: "TUYỂN SINH FSC", ip: "172.16.0.88", mac: "20:4E:F6:0A:35:BD", type: 'high_school' },
+  { id: 10, name: "PHOTO TOSHIBA 357", department: "VĂN PHÒNG FSC", ip: "172.16.0.43", mac: "00:80:91:76:D7:9B", type: 'high_school' },
+  { id: 11, name: "CANON MF244DW", department: "VĂN PHÒNG FSC", ip: "172.16.0.26", mac: "F0:03:8C:95:1D:C4", type: 'high_school' },
+  { id: 12, name: "CANON MF244DW", department: "TUYỂN SINH FSC", ip: "172.16.0.88", mac: "20:4E:F6:0A:35:BD", type: 'high_school' },
 ];
 
 const PrinterList = () => {
@@ -29,25 +31,30 @@ const PrinterList = () => {
 
   // Driver URLs cho tất cả máy in
   const driverUrls = {
-    "CANON MF 244DW": "https://drive.google.com/file/d/1wDygt1LkR5FepnLLLSDV-zSsdN4ZaWOM/view?usp=sharing",
-    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/101HzBNAc6aIopsOlHTsMZImcfOFpjLE3/view?usp=sharing",
+    "CANON MF465DW": "https://vn.canon/vi/support/imageCLASS%20MF465dw/model",
+    "CANON MF 244DW": "https://drive.google.com/file/d/1EQUza81I5Tb6dj7gqaHP65YLYXbua0EI/view",
+    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/1ivYdOH2aLfq_brIyyGs4hIcXwOEx5jsh/view",
+    "IN THẺ ENTRUST SIGMA DS2": "https://drive.google.com/file/d/1oev7Yec9TCf7LY7GDE9dD41tL-uB9sGP/view",
     "IN MÀU EPSON L8050": "https://www.epson.com.vn/Ink-Tank-Printers/L-Series/Epson-L8050/s/SPT_C11CK37501",
-    "CANON MF264DW": "https://drive.google.com/file/d/1GAAeCK2YA8guTZ0JVNONgylBsXbBI26J/view?usp=sharing",
-    "PHOTO TOSHIBA 357": "https://drive.google.com/file/d/1hkJsW-5hMnWTUoosetuKpJwb9xySofyl/view?usp=sharing"
+    "CANON MF264DW": "https://drive.google.com/file/d/1bskaNQzomK0you3ShxD8DXKPCAWXzewW/view",
+    "PHOTO TOSHIBA 357": "https://drive.google.com/file/d/1DcAc9P161j_VSA2XUPEtUjoQisODRkr9/view"
   };
 
   // Manual URLs cho tất cả máy in
   const manualUrls = {
-    "CANON MF 244DW": "https://drive.google.com/drive/folders/1caE1WmnqpCRju02fnTc9kRlwRmDYJpg7?usp=drive_link",
-    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/101HzBNAc6aIopsOlHTsMZImcfOFpjLE3/view?usp=sharing",
-    "IN MÀU EPSON L8050": "https://drive.google.com/file/d/1GbNPm2nbd86W3DtSD7bGcXbCmwC9fdRp/view?usp=sharing",
+    "CANON MF465DW": "https://docs.google.com/document/d/11LzfIwuVsuh-WigtfP_1a7FOCCsrevXw/edit",
+    "CANON MF 244DW": "https://drive.google.com/drive/u/4/folders/10NEl1d0aQklubo1ADqThQn192Y4f5I99",
+    "HP LaserJet Pro M404DW": "https://drive.google.com/file/d/1WeE7sByF2RNz-wKsbqa5ny0uvikEr70D/view",
+    "IN THẺ ENTRUST SIGMA DS2": "https://drive.google.com/file/d/1t8PnGPcGxXyceALP8ZciJqkA0TrSaJXz/view",
+    "IN MÀU EPSON L8050": "https://drive.google.com/file/d/1eQKau0M5hCvabr95In9MEfGFgQE54r_-/view",
     "CANON MF264DW": "https://www.youtube.com/watch?v=ve9eChF3ako",
-    "PHOTO TOSHIBA 357": "https://drive.google.com/drive/folders/1caE1WmnqpCRju02fnTc9kRlwRmDYJpg7?usp=drive_link"
+    "PHOTO TOSHIBA 357": "https://drive.google.com/drive/u/4/folders/1NLUA3sNlDV1zoM0ZfKPpk5ybr1sBlcts"
   };
 
   // WiFi connections cho tất cả phòng ban
   const wifiConnections = {
-    "HÀNH CHÁNH": "AP-BT-FU-U6P",
+    "HÀNH CHÁNH 1": "AP-BT-FU-U6P",
+    "HÀNH CHÁNH 2": "AP-BT-FU-U6P",
     "TUYỂN SINH T5": "AP-BT-TuyenSinh-U6P",
     "TUYỂN SINH T1": "AP-BT-TuyenSinh-U6P",
     "ĐÀO TẠO": "AP-Tang-4-401-U6",
