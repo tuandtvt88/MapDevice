@@ -9,7 +9,7 @@ export const wifiLocations = [
     { name: "AP-BT-Phong AI-U6", top: "17%", left: "15%" },
     { name: "AP-BT-IT-ACP", top: "17%", left: "37%" },
     { name: "AP-BT-Phong hop-ACP", top: "15%", left: "62%" },
-    { name: "AP-BT-Sales-U6P", top: "35%", left: "88%" },
+    { name: "AP-BT-DVSV-U6P", top: "35%", left: "88%" },
     { name: "AP-BT-CTSV-U6", top: "13%", left: "84%" },
     { name: "AP-BT-SanTruong-03-ACP", top: "28%", left: "55%" },
     { name: "AP-BT-SanTruong-01-U6", top: "50%", left: "67%" },
