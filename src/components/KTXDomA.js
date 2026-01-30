@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 // ✅ Xuất danh sách WiFi để dùng ở các file khác
 export const wifiLocations = [
     { name: "AP-KTX Dom A-ACP", top: "53.46%", left: "37.33%" },
+    { name: "AP-KTX-DomA-Pantry-U6P", top: "23.46%", left: "35.33%" },
 ];
 
 export function KTXDomA() {
